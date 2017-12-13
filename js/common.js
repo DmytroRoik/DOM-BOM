@@ -40,13 +40,17 @@ function ValidateForm () {
 	
 }	
 function isAgeCorrect(age){
-	if(!isNaN(age)&&age>=0)return true;
+	if(!isNaN(age)&&age>=0){
+		for(var i=0;i<age.length;i++){
+			if(isNaN(age[i]))return false;
+		}
+		return true;
+	}
 	return false;
 }
 function isUsernameCorrect(username){
 	var regex=/^user_/;
-	if(regex.test(username))return true;
-	return false;
+	return regex.test(username);
 }
 function isDateCorrect (date) {
 	if(date.length!=10)return false;
