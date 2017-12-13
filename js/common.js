@@ -24,7 +24,37 @@ validateBtn.setAttribute('value', 'Validate Me');
 form.append(validateBtn);
 
 form.addEventListener('submit', ValidateForm);
-
 function ValidateForm () {
-	alert(1);
+	event.preventDefault();
+	var age,
+	 username,
+	 date;
+
+	if(isAgeCorrect(inputAge.value))age=inputAge.value;
+	if(isUsernameCorrect(inputUsername.value))username=inputUsername.value;
+	
+	if(isDateCorrect(inputDate.value))date=inputDate.value;
+	else alert('your data is invalid');
+
+	if(age!=undefined&&username!=undefined&&date!=undefined)console.log('mission completed');
+	
+}	
+function isAgeCorrect(age){
+	if(!isNaN(age)&&age>=0)return true;
+	return false;
 }
+function isUsernameCorrect(username){
+	var regex=/^user_/;
+	if(regex.test(username))return true;
+	return false;
+}
+function isDateCorrect (date) {
+	if(date.length!=10)return false;
+	var regex=/([0-9][0-9]\/){2}[0-9]{4}/
+	if(regex.test(date)){
+		if( (date[0]+date[1])<=31 && (date[3]+date[4])<=12 ) return true;
+		else return false;
+	}
+	else return false;
+}
+
