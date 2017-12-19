@@ -3,33 +3,45 @@ form.setAttribute('name','login');
 form.setAttribute("action","google.com");
 document.body.append(form);
 
-var inputAge=document.createElement("input");
-inputAge.setAttribute("type", "text");
-inputAge.setAttribute("name", "age");
-form.append(inputAge);
+	var labelAge=document.createElement('label');
+		 labelAge.innerText="Age";	
 
+	var inputAge=document.createElement("input");
+		 inputAge.setAttribute("type", "text");
+		 inputAge.setAttribute("name", "age");
+		labelAge.append(inputAge);
+
+
+var labelUsername=document.createElement('label');
+		 labelUsername.innerText="Name";	
 var inputUsername=document.createElement('input');
-inputUsername.setAttribute('type','text');
-inputUsername.setAttribute('name', 'username');
-form.append(inputUsername);
-
+	 inputUsername.setAttribute('type','text');
+	 inputUsername.setAttribute('name', 'username');
+	labelUsername.append(inputUsername);
+   
+var labelDate=document.createElement('label');
+		 labelDate.innerText="Date";
 var inputDate=document.createElement('input');
-inputDate.setAttribute('type', 'text');
-inputDate.setAttribute('name', 'date');
-form.append(inputDate);
+	 inputDate.setAttribute('type', 'text');
+	 inputDate.setAttribute('name', 'date');
+	labelDate.append(inputDate);
 
 var validateBtn=document.createElement('input');
-validateBtn.setAttribute('type', 'submit');
-validateBtn.setAttribute('value', 'Validate Me');
+	validateBtn.setAttribute('type', 'submit');
+	validateBtn.setAttribute('value', 'Validate Me');
+
+form.append(labelAge);
+form.append(labelUsername);
+form.append(labelDate);
 form.append(validateBtn);
 
 form.addEventListener('submit', ValidateForm);
+
 function ValidateForm () {
 	event.preventDefault();
 	var age,
 	 username,
 	 date;
-
 	if(isAgeCorrect(inputAge.value))age=inputAge.value;
 	if(isUsernameCorrect(inputUsername.value))username=inputUsername.value;
 	
@@ -40,11 +52,10 @@ function ValidateForm () {
 	
 }	
 function isAgeCorrect(age){
+
 	if(!isNaN(age)&&age>=0){
-		for(var i=0;i<age.length;i++){
-			if(isNaN(age[i]))return false;
-		}
-		return true;
+		console.log(age.includes('e'));
+		return !age.includes('e');
 	}
 	return false;
 }
