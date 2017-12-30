@@ -48,7 +48,10 @@ function ValidateForm () {
 	if(isDateCorrect(inputDate.value))date=inputDate.value;
 	else alert('your data is invalid');
 
-	if(age!=undefined&&username!=undefined&&date!=undefined)console.log('mission completed');
+	if(age!=undefined&&username!=undefined&&date!=undefined){
+		form.reset();
+		console.log('mission completed');}
+	else alert("data is not correct");
 	
 }	
 function isAgeCorrect(age){
