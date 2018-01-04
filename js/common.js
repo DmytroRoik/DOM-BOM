@@ -3,32 +3,33 @@ form.setAttribute('name','login');
 form.setAttribute("action","google.com");
 document.body.append(form);
 
-	var labelAge=document.createElement('label');
-		 labelAge.innerText="Age";	
-
-	var inputAge=document.createElement("input");
-		 inputAge.setAttribute("type", "text");
-		 inputAge.setAttribute("name", "age");
-		labelAge.append(inputAge);
+var labelAge=document.createElement('label');
+labelAge.innerText="Age";
+var inputAge=document.createElement("input");
+inputAge.setAttribute("type", "text");
+inputAge.setAttribute("name", "age");
+labelAge.append(inputAge);
 
 
 var labelUsername=document.createElement('label');
-		 labelUsername.innerText="Name";	
+labelUsername.innerText="Name";	
 var inputUsername=document.createElement('input');
-	 inputUsername.setAttribute('type','text');
-	 inputUsername.setAttribute('name', 'username');
-	labelUsername.append(inputUsername);
-   
+inputUsername.setAttribute('placeholder', 'user_');
+inputUsername.setAttribute('type','text');
+inputUsername.setAttribute('name', 'username');
+labelUsername.append(inputUsername);
+
 var labelDate=document.createElement('label');
-		 labelDate.innerText="Date";
+labelDate.innerText="Date";
 var inputDate=document.createElement('input');
-	 inputDate.setAttribute('type', 'text');
-	 inputDate.setAttribute('name', 'date');
-	labelDate.append(inputDate);
+inputDate.setAttribute('placeholder', 'dd/mm/yyyy');
+inputDate.setAttribute('type', 'text');
+inputDate.setAttribute('name', 'date');
+labelDate.append(inputDate);
 
 var validateBtn=document.createElement('input');
-	validateBtn.setAttribute('type', 'submit');
-	validateBtn.setAttribute('value', 'Validate Me');
+validateBtn.setAttribute('type', 'submit');
+validateBtn.setAttribute('value', 'Validate Me');
 
 form.append(labelAge);
 form.append(labelUsername);
@@ -40,24 +41,27 @@ form.addEventListener('submit', ValidateForm);
 function ValidateForm () {
 	event.preventDefault();
 	var age,
-	 username,
-	 date;
+	username,
+	date;
+	var errors=[];
 	if(isAgeCorrect(inputAge.value))age=inputAge.value;
+	else errors.push('age');
+
 	if(isUsernameCorrect(inputUsername.value))username=inputUsername.value;
-	
+	else errors.push('username');
+
 	if(isDateCorrect(inputDate.value))date=inputDate.value;
-	else alert('your data is invalid');
+	else errors.push('date');
 
 	if(age!=undefined&&username!=undefined&&date!=undefined){
 		form.reset();
-		console.log('mission completed');}
-	else alert("data is not correct");
-	
+		alert('mission completed');
+	}
+	else alert("Some values are incorrect: "+errors.join(','));
+
 }	
 function isAgeCorrect(age){
-
-	if(!isNaN(age)&&age>=0){
-		console.log(age.includes('e'));
+	if(age&&!isNaN(age)&&age>=0){
 		return !age.includes('e');
 	}
 	return false;
